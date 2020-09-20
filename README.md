@@ -1,1 +1,1 @@
-# Simple-Firebase-Starter
+# simple-firebase-starter
