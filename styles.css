@@ -1,0 +1,30 @@
+body 
+
+    {
+			background-color: grey;
+		}
+		#item-list {
+			list-style: none;
+
+			padding:0;
+		}
+
+		#item-list li {
+			background-color: #fff;
+			width: 240px;
+			margin-bottom: 10px;
+			padding: 10px 20px;
+		}
+
+		#item-list div {
+			border: 1px solid #eee;
+			cursor: pointer;
+			display: inline-block;
+			padding: 5px
+			background-color: #eee;
+		}
+
+		input {
+			display: block;
+			margin-bottom: 10px;
+		}
