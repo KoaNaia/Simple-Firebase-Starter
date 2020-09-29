@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Not For Sale</title>
+  <title>Not For Sale</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
   
 <body>
 
-	<h1>About</h1>
+  <h1>About</h1>
   <h2>Items:</h2>
 
-	<form id="add-item-form">
-		
-		<input type="text" name="name" placeholder ="Item Name"> 
+  <form id="add-item-form">
+    
+    <input type="text" name="name" placeholder ="Item Name"> 
 
-		<select name="type">
-		  <option value="Free">Free</option>
-		  <option value="For Sale">For Sale</option>
-		  <option value="Exchange">Exchange</option>
-		</select>
+    <select name="type">
+      <option value="Free">Free</option>
+      <option value="For Sale">For Sale</option>
+      <option value="Exchange">Exchange</option>
+    </select>
 
-		<button>Add Item</button>
+    <button>Add Item</button>
 
-	</form>
+  </form>
 
-	<ul id ="item-list"></ul>
+  <ul id ="item-list"></ul>
 
   <form id="navigation-bar">
 
@@ -41,113 +41,6 @@
 </header>
 
 </form>
-
-
-
-	<script>
-
-  var firebaseConfig = {
-  	apiKey: "AIzaSyBConQTtdhWNQWPMsW8EcgKzlKgDPGPpmo",
-    authDomain: "simple-firebase-starter-88119.firebaseapp.com",
-    databaseURL: "https://simple-firebase-starter-88119.firebaseio.com",
-    projectId: "simple-firebase-starter-88119",
-    storageBucket: "simple-firebase-starter-88119.appspot.com",
-    messagingSenderId: "754245749716",
-    appId: "1:754245749716:web:7f36403d9da54490242441"
-  };
-   
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  const db = firebase.firestore();
-
-  const itemList = document.querySelector('#item-list');
-  const form = document.querySelector('#add-item-form');
-
-  // Create elements and render items
-
-  function renderItem(doc) {
-  	let li = document.createElement('li');
-  	let name = document.createElement('h3');
-  	let type = document.createElement('h4');
-  	let cross = document.createElement('div');
-
-  	li.setAttribute('id', doc.id);
-  	name.textContent = doc.data().name;
-  	type.textContent = doc.data().type;
-  	cross.textContent = 'delete';
-
-  	li.appendChild(name);
-  	li.appendChild(type);
-  	li.appendChild(cross);
-
-  	itemList.appendChild(li);
-
-  	 // Deleting Data
-
-	  cross.addEventListener('click', (e) => {
-	  	e.stopPropagation();
-	  	let id = e.target.parentElement.getAttribute('id');
-	  	db.collection('items').doc(id).delete();
-	  })
-
-
-
-  }
-
-  // Getting Data - Initial Static Method
-
-  /*
-  db.collection('items').get().then((snapshot) => {
-
-  	snapshot.docs.forEach(doc => {
-  		console.log(doc.data());
-  		renderItem(doc);
-  	})
-
-  })
-  */
-
-
-  // Saving Data 
-
-  form.addEventListener('submit', (e) => {
-  	e.preventDefault();
-  	db.collection('items').add({
-  		name: form.name.value,
-  		type: form.type.value
-  	});
-  	form.name.value = '';
-  	form.type.value = '';
-  })
-
-
-  // Real Time Listener
-
-  db.collection('items').orderBy('name').onSnapshot(snapshot => {
-  	let changes = snapshot.docChanges();
-
-  	changes.forEach(change => {
-  		if(change.type == 'added'){
-  			renderItem(change.doc);
-  		} else if (change.type == 'removed'){
-  			let li = itemList.querySelector('[id=' + change.doc.id + ']');
-  			itemList.removeChild(li);
-  		}
-  	})
-
-
-  	//console.log(changes);
-  })
-
-
- 
-
-
-</script>
-
-
 
 </body>
 </html>
