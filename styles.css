@@ -1,7 +1,7 @@
 body 
 
-    {
-			background-color: grey;
+    				{
+			background-color: darkgrey;
 		}
 		#item-list {
 			list-style: none;
@@ -10,21 +10,68 @@ body
 		}
 
 		#item-list li {
-			background-color: #fff;
+			background-color: grey;
 			width: 240px;
 			margin-bottom: 10px;
 			padding: 10px 20px;
 		}
 
 		#item-list div {
-			border: 1px solid #eee;
+			border: 1px solid darkgrey;
 			cursor: pointer;
 			display: inline-block;
 			padding: 5px
-			background-color: #eee;
+			background-color: #fff;
 		}
 
 		input {
 			display: block;
 			margin-bottom: 10px;
 		}
+		
+		h1 {
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		}
+		
+		h2 {
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		}
+
+		body {
+			font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+		}		
+		
+		#navigation-bar ul {
+  			list-style-type: none;
+  			margin: 5;
+ 			padding: 0;
+ 		}
+
+ 		#navigation-bar li {
+ 			display: inline;
+ 		}
+
+ 		#navigation-barul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+#navigation-bar li {
+  float: left;
+}
+
+#navigation-bar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+#navigation-bar li a:hover {
+  background-color: #111;
+}
